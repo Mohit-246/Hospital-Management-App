@@ -5,8 +5,8 @@ import {
   FileText, 
   Heart, 
   MessageCircle,
-  Bell,
   Settings,
+  Bell,
   LogOut
 } from 'lucide-react';
 
@@ -23,6 +23,7 @@ const PatientSidebar: React.FC<PatientSidebarProps> = ({ activeTab, onTabChange,
     { id: 'medical-records', label: 'Medical Records', icon: FileText },
     { id: 'health-metrics', label: 'Health Metrics', icon: Heart },
     { id: 'messages', label: 'Messages', icon: MessageCircle },
+    { id: 'profile', label: 'Profile Settings', icon: Settings },
   ];
 
   return (
@@ -66,9 +67,6 @@ const PatientSidebar: React.FC<PatientSidebarProps> = ({ activeTab, onTabChange,
         <div className="flex items-center justify-between">
           <button className="p-2 text-teal-200 hover:text-white rounded-lg hover:bg-teal-500">
             <Bell className="w-5 h-5" />
-          </button>
-          <button className="p-2 text-teal-200 hover:text-white rounded-lg hover:bg-teal-500">
-            <Settings className="w-5 h-5" />
           </button>
           <button className="p-2 text-teal-200 hover:text-white rounded-lg hover:bg-teal-500">
             <LogOut className="w-5 h-5" />

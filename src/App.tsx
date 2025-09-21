@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { User } from './types';
-import LoginScreen from './components/LoginScreen';
+import { AuthProvider } from './components/AuthProvider';
+import { useAuth } from './hooks/useAuth';
+import AuthScreen from './components/AuthScreen';
+import ProfileSettings from './components/ProfileSettings';
 import Sidebar from './components/Sidebar';
 import PatientSidebar from './components/PatientSidebar';
 import Header from './components/Header';
@@ -14,12 +16,23 @@ import StaffList from './components/StaffList';
 import DepartmentList from './components/DepartmentList';
 import RoomList from './components/RoomList';
 
-function App() {
-  const [user, setUser] = useState<User | null>(null);
+const AppContent: React.FC = () => {
+  const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!user) {
-    return <LoginScreen onLogin={setUser} />;
+    return <AuthScreen />;
   }
 
   // Patient Interface
@@ -31,6 +44,7 @@ function App() {
         case 'medical-records': return 'Medical Records';
         case 'health-metrics': return 'Health Metrics';
         case 'messages': return 'Messages';
+        case 'profile': return 'Profile Settings';
         default: return 'My Dashboard';
       }
     };
@@ -42,6 +56,7 @@ function App() {
         case 'medical-records': return 'View your medical history and records';
         case 'health-metrics': return 'Track your health progress';
         case 'messages': return 'Communicate with your healthcare team';
+        case 'profile': return 'Manage your account settings';
         default: return '';
       }
     };
@@ -58,6 +73,8 @@ function App() {
           return <div className="p-6 bg-gray-50 min-h-screen"><div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6"><h2 className="text-xl font-semibold text-gray-900">Health Metrics</h2><p className="text-gray-600 mt-2">Your health metrics and trends will be displayed here.</p></div></div>;
         case 'messages':
           return <div className="p-6 bg-gray-50 min-h-screen"><div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6"><h2 className="text-xl font-semibold text-gray-900">Messages</h2><p className="text-gray-600 mt-2">Your messages with healthcare providers will be displayed here.</p></div></div>;
+        case 'profile':
+          return <ProfileSettings />;
         default:
           return <PatientDashboard />;
       }
@@ -65,9 +82,9 @@ function App() {
 
     return (
       <div className="flex h-screen bg-gray-100">
-        <PatientSidebar activeTab={activeTab} onTabChange={setActiveTab} patientName={user.name} />
+        <PatientSidebar activeTab={activeTab} onTabChange={setActiveTab} patientName={`${user.firstName} ${user.lastName}`} />
         <div className="flex-1 flex flex-col overflow-hidden">
-          <PatientHeader title={getPatientPageTitle()} subtitle={getPatientPageSubtitle()} patientName={user.name} />
+          <PatientHeader title={getPatientPageTitle()} subtitle={getPatientPageSubtitle()} patientName={`${user.firstName} ${user.lastName}`} />
           <main className="flex-1 overflow-auto">
             {renderPatientContent()}
           </main>
@@ -85,6 +102,7 @@ function App() {
       case 'staff': return 'Staff';
       case 'departments': return 'Departments';
       case 'rooms': return 'Rooms';
+      case 'profile': return 'Profile Settings';
       default: return 'Dashboard';
     }
   };
@@ -97,6 +115,7 @@ function App() {
       case 'staff': return 'Manage hospital staff and schedules';
       case 'departments': return 'Department management and oversight';
       case 'rooms': return 'Room availability and management';
+      case 'profile': return 'Manage your account settings';
       default: return '';
     }
   };
@@ -115,6 +134,8 @@ function App() {
         return <DepartmentList />;
       case 'rooms':
         return <RoomList />;
+      case 'profile':
+        return <ProfileSettings />;
       default:
         return <Dashboard />;
     }
@@ -130,6 +151,14 @@ function App() {
         </main>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 

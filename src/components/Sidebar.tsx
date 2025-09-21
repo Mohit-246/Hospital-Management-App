@@ -6,9 +6,9 @@ import {
   Building2, 
   Bed, 
   BarChart3, 
-  Search,
+  Settings,
   Bell,
-  Settings
+  Search
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -24,6 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     { id: 'staff', label: 'Staff', icon: UserCheck },
     { id: 'departments', label: 'Departments', icon: Building2 },
     { id: 'rooms', label: 'Rooms', icon: Bed },
+    { id: 'profile', label: 'Profile Settings', icon: Settings },
   ];
 
   return (
@@ -70,9 +71,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
           </button>
           <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
             <Search className="w-5 h-5" />
-          </button>
-          <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
-            <Settings className="w-5 h-5" />
           </button>
         </div>
       </div>
