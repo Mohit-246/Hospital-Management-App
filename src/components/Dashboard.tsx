@@ -38,15 +38,17 @@ const Dashboard: React.FC = () => {
   ];
 
   const recentActivities = [
-    { time: '10:30 AM', activity: 'New patient John Smith admitted to Room 205', type: 'admission' },
-    { time: '10:15 AM', activity: 'Emergency case: Maria Garcia assigned to Dr. Chen', type: 'emergency' },
-    { time: '09:45 AM', activity: 'Surgery completed for patient Robert Miller', type: 'surgery' },
-    { time: '09:30 AM', activity: 'Room 103 cleaned and ready for next patient', type: 'maintenance' }
+    { time: '10:30 AM', activity: 'New patient admitted to Room 205', type: 'admission' },
+    { time: '10:15 AM', activity: 'Emergency case assigned to Dr. Chen', type: 'emergency' },
+    { time: '09:45 AM', activity: 'Surgery completed successfully', type: 'surgery' },
+    { time: '09:30 AM', activity: 'Room 103 cleaned and ready for next patient', type: 'maintenance' },
+    { time: '09:15 AM', activity: 'Lab results uploaded for patient in Room 301', type: 'lab' },
+    { time: '09:00 AM', activity: 'Morning shift handover completed', type: 'shift' }
   ];
 
   const criticalPatients = [
-    { name: 'Emily Johnson', room: '205', condition: 'Critical', doctor: 'Dr. Michael Chen' },
-    { name: 'James Wilson', room: '301', condition: 'Critical', doctor: 'Dr. Sarah Wilson' }
+    { name: 'Patient A', room: '205', condition: 'Critical', doctor: 'Dr. Michael Chen' },
+    { name: 'Patient B', room: '301', condition: 'Critical', doctor: 'Dr. Sarah Wilson' }
   ];
 
   return (

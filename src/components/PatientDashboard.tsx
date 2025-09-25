@@ -22,7 +22,7 @@ const PatientDashboard: React.FC = () => {
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Welcome Section */}
       <div className="bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl text-white p-6 mb-6">
-        <h1 className="text-2xl font-bold mb-2">Welcome back, John!</h1>
+        <h1 className="text-2xl font-bold mb-2">Welcome back!</h1>
         <p className="text-teal-100">Here's your health overview for today</p>
       </div>
 

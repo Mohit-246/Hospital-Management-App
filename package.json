@@ -1,13 +1,18 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "medflow-hospital-management",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Comprehensive hospital management system for healthcare professionals and patients",
+  "keywords": ["hospital", "healthcare", "management", "medical", "patient", "appointments"],
+  "author": "MedFlow Healthcare Solutions",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "echo 'Tests will be implemented' && exit 0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
